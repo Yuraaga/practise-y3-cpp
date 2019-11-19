@@ -1,22 +1,14 @@
 #include <iostream>
 #include <math.h>
-
 using namespace std;
-
-// Базовий клас (точки у двовимірній площині з цілочисельними координатами):
-// Конструктори: за замовчуванням, з параметрами та копіювання.
-// Деструктор. Функції: обчислення відстані між точками;
-// додавання координат двох точок; введення - виведення на екран; перевірка збіжності двох точок.
-// Похідний клас: пікселів на екрані (точки, які мають колір).
-
 class Dot
 {
 private:
-  double x, y;
+  int x, y;
 
 public:
   Dot() { this->x = this->y = 0; }
-  Dot(double x, double y)
+  Dot(int x, int y)
   {
     this->x = x;
     this->y = y;
@@ -26,11 +18,12 @@ public:
     this->x = obj.x;
     this->y = obj.y;
   }
-  double awayOf(Dot &obj) { return sqrt(pow(obj.x - this->x, 2) + pow(obj.y - this->y, 2)); }
-  void add(Dot &obj)
+  int awayOf(Dot &obj) { return sqrt(pow(obj.x - this->x, 2) + pow(obj.y - this->y, 2)); }
+  Dot add(Dot &obj)
   {
     this->x += obj.x;
     this->y += obj.y;
+    return *this;
   }
   void input()
   {
@@ -55,6 +48,12 @@ public:
 
 int main()
 {
-  getchar();
+  Dot a, b(12, 32);
+  a.input();
+  cout << "isEqual: " << a.isEqual(b) << endl;
+  cout << "distance: " << a.add(b).awayOf(b) << endl
+       << "a = " << endl;
+  a.print();
+  system("pause");
   return 0;
 }

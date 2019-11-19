@@ -1,16 +1,5 @@
 #include <iostream>
-
-// Взявши за основу програму із завдання 1, додайте метод типу
-// bool, який називається isOveersize (), до класів book і tape. Припустимо, книга, в
-// якій більше 800 сторінок, або касета з часом програвання якої більше 90
-// хвилин, будуть вважатися об'єктами з перевищенням розміру. До цієї функції
-// можна звертатися з main(), а результат її роботи виводити у вигляді рядка
-// «Перевищення розміру!» Для відповідних книг і касет. Припустимо, об'єкти
-// класів book і tape повинні бути доступні через покажчики на них, що
-// зберігаються в масиві типу publication.
-
 using namespace std;
-
 class publication
 {
 protected:
@@ -29,7 +18,6 @@ public:
     cin >> this->name;
     cout << "price[float] = ";
     cin >> this->price;
-    cout << endl;
   }
   void printdata() { cout << "Name: " << this->name << ", price: " << this->price << endl; }
 };
@@ -48,7 +36,6 @@ public:
   void printdata() { cout << "Time: " << this->time << endl; }
   bool isOversized() { return time > 90; }
 };
-
 class book : public publication
 {
 protected:
@@ -68,7 +55,6 @@ public:
 int main()
 {
   publication *arr[4];
-
   cout << "Data input" << endl;
   for (char i = 0; i < 4; i++)
   {
@@ -91,12 +77,10 @@ int main()
       arr[i] = t;
     }
   }
-  cout << "Data input end" << endl;
-
-  cout << "Printing data from an array:" << endl;
+  cout << "Data input end" << endl
+       << "Printing data from an array:" << endl;
   for (char i = 0; i < 4; i++)
     arr[i]->printdata();
-
   system("pause");
   return 0;
 }

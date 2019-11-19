@@ -1,14 +1,6 @@
 #include <iostream>
 #include <math.h>
-
 using namespace std;
-
-// Базовий клас (точки у двовимірній площині з цілочисельними координатами):
-// Конструктори: за замовчуванням, з параметрами та копіювання.
-// Деструктор. Функції: обчислення відстані між точками;
-// додавання координат двох точок; введення - виведення на екран; перевірка збіжності двох точок.
-// Похідний клас: пікселів на екрані (точки, які мають колір).
-
 class Dot
 {
 private:
@@ -21,7 +13,7 @@ public:
     this->x = x;
     this->y = y;
   }
-  Dot(Dot &obj)
+  Dot(const Dot &obj)
   {
     this->x = obj.x;
     this->y = obj.y;
@@ -41,13 +33,14 @@ public:
   }
   void print() { cout << "x = " << this->x << ", y = " << this->y << endl; }
   bool isEqual(Dot &obj) { return this->x == obj.x && this->y == obj.y; }
-  Dot operator=(Dot &obj)
+  Dot operator=(Dot obj)
   {
     this->x = obj.x;
     this->y = obj.y;
+    return *this;
   }
-  friend Dot &operator+(Dot &obj, Dot &obj2) { return new Dot(obj.x + obj2.x, obj.y + obj2.y) }
-  friend Dot &operator-(Dot &obj, Dot &obj2) { return new Dot(obj.x - obj2.x, obj.y - obj2.y) }
+  friend Dot operator+(Dot &obj, Dot &obj2) { return Dot(obj.x + obj2.x, obj.y + obj2.y); }
+  friend Dot operator-(Dot &obj, Dot &obj2) { return Dot(obj.x - obj2.x, obj.y - obj2.y); }
 };
 
 class ColoredDot : public Dot
@@ -62,6 +55,13 @@ public:
 
 int main()
 {
-  getchar();
+  Dot a, b(12, 32), c;
+  a.input();
+  c = a + b;
+  cout << "isEqual: " << a.isEqual(b) << endl
+       << "distance: " << c.awayOf(b) << endl
+       << "c = " << endl;
+  c.print();
+  system("pause");
   return 0;
 }

@@ -9,13 +9,10 @@ using namespace std;
 int main()
 {
   char strings[AMOUNT][LENGTH];
-
-  // INPUT
   cout << "Enter 5 cities" << endl;
   for (int i = 0; i < AMOUNT; i++)
     cin >> strings[i];
 
-  // SORT
   for (int i = 1; i < AMOUNT; i++)
   {
     for (int j = 1; j < AMOUNT - i; j++)
@@ -30,11 +27,9 @@ int main()
     }
   }
 
-  // PRINT
   for (int i = 0; i < AMOUNT; i++)
     cout << strings[i] << ", ";
   cout << endl;
-
   system("pause");
   return 0;
 }

@@ -29,5 +29,6 @@ int main()
   file.close();
   ifstream ffile("ku.txt");
   cout << ffile.rdbuf() << endl;
+  system("pause");
   return 0;
 }
